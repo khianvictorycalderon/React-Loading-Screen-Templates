@@ -1,8 +1,20 @@
 import styles from './Plain_Loading_CSS.module.css'
 
-interface PlainLoadingProps {
+export interface PlainLoadingProps {
     IsDoneLoading: boolean;
-    Theme?: "light" | "dark";
+    Theme?:
+        | "light"
+        | "dark"
+        | "amber"
+        | "emerald"
+        | "red"
+        | "blue"
+        | "green"
+        | "yellow"
+        | "indigo"
+        | "purple"
+        | "pink"
+        | "gray";
 }
 
 export default function PlainLoading({
@@ -11,11 +23,11 @@ export default function PlainLoading({
 }: PlainLoadingProps) {
     return (
         <div className={`
-            ${styles.box} 
-            ${Theme === "dark" ? styles.dark : styles.light} 
+            ${styles.box}
+            ${Theme && styles[Theme]}
             ${IsDoneLoading ? styles.hidden : ''}
         `}>
-            <div className={styles.spinner}></div>
+            <div className={Theme == "light" ? styles.spinner_black : styles.spinner}></div>
         </div>
     )
 }
