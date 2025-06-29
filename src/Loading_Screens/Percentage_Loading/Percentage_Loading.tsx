@@ -3,7 +3,9 @@ import styles from './Percentage_Loading_CSS.module.css'
 
 interface PercentageLoadingProps {
     IsDoneLoading: boolean;
-    Theme?: "light" | "dark";
+    Theme?:
+      | "light" | "dark" | "amber" | "emerald" | "red" | "blue" | "green"
+      | "yellow" | "indigo" | "purple" | "pink" | "gray";
 }
 
 export default function PercentageLoading({
@@ -32,7 +34,7 @@ export default function PercentageLoading({
             interval = window.setInterval(() => {
                 setPercentage((prev) => {
                     if (prev < 100) {
-                        return Math.min(prev + 5, 100); // fast increase
+                        return Math.min(prev + 5, 100);
                     }
                     return prev;
                 });
@@ -52,7 +54,7 @@ export default function PercentageLoading({
     return (
         <div className={`
             ${styles.box}
-            ${Theme === "dark" ? styles.dark : styles.light}
+            ${Theme ? styles[Theme] : styles.light}
             ${!show ? styles.hidden : ''}
         `}>
             <div className={styles.barContainer}>
